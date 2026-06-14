@@ -257,6 +257,10 @@ void NProtectBypass() {
         }
         loopCount++;
 
+        // SEMUA memcpy translate strings + GG kill DIMATIKAN buat reduce
+        // variable. Bypass core (3 DetourFunction di atas) tetep aktif.
+        // Cosmetic only, gak ngaruh ke bypass logic.
+#if 0
         // // Memcpy tanpa length
         memcpy((void*)(GetGameStart + 0x20EDCA0), "LostSaga in Timegate - Client", strlen("LostSaga in Timegate - Client") + 1);
         memcpy((void*)(GetGameStart + 0x205DD1C), "Quest", strlen("Quest") + 1);
@@ -357,10 +361,14 @@ void NProtectBypass() {
 
 
         if (FindProcess("GameGuard.des")) {
-            TerminateProcessByName("GameGuard.des");
-            TerminateProcessByName("GameMon.des");
-            TerminateProcessByName("GameMon64.des");
+            // EXPERIMENT: jangan kill GG.des. Mungkin game butuh process
+            // ini berjalan buat IPC, walau patch udah skip pengecekan-nya.
+            //
+            // TerminateProcessByName("GameGuard.des");
+            // TerminateProcessByName("GameMon.des");
+            // TerminateProcessByName("GameMon64.des");
         }
+#endif // disabled translate + GG kill block
 
         Sleep(20);
     }

@@ -170,9 +170,7 @@ DWORD Exit24JMP = Exit24 + 0x225;
 //DWORD Exit24JMP = Exit24 + 0x225;
 
 void NProtectBypass() {
-    // Diagnostic: tulis status awal ke `lslog_bypass.log` di folder game.
-    // Hanya 1x di awal thread, supaya bisa verify bahwa thread benar-benar
-    // jalan dan offset target ada di alamat yang readable.
+    // Diagnostic awal -- akan di-update lagi setelah memori decrypted.
     {
         FILE* f = fopen("lslog_bypass.log", "w");
         if (f) {
@@ -185,30 +183,54 @@ void NProtectBypass() {
             fprintf(f, "Exit23JMP    = %08X\n", Exit23JMP);
             fprintf(f, "Exit24       = %08X\n", Exit24);
             fprintf(f, "Exit24JMP    = %08X\n", Exit24JMP);
+            fprintf(f, "(waiting for VMProtect to decrypt target memory...)\n");
+            fclose(f);
+        }
+    }
 
-            // Coba baca 8 byte di setiap target untuk verify alamat valid.
-            __try {
-                BYTE* p1 = (BYTE*)InitStart;
-                fprintf(f, "InitStart bytes: %02X %02X %02X %02X %02X %02X %02X %02X\n",
-                    p1[0],p1[1],p1[2],p1[3],p1[4],p1[5],p1[6],p1[7]);
-            } __except(EXCEPTION_EXECUTE_HANDLER) {
-                fprintf(f, "InitStart bytes: <UNREADABLE>\n");
+    // VMProtect/Themida packer: target bytes are ZERO sampai unpacker
+    // mendekripsi region. Kalau kita patch saat zeros, JMP kita akan
+    // di-OVERWRITE oleh unpacker. Jadi tunggu sampai bytes != 0.
+    int waitTicks = 0;
+    while (waitTicks < 60 * 50) { // max 60 detik (50 cek per detik)
+        BYTE b1 = 0, b2 = 0, b3 = 0;
+        __try { b1 = *(BYTE*)InitStart; } __except(EXCEPTION_EXECUTE_HANDLER) {}
+        __try { b2 = *(BYTE*)Exit23;    } __except(EXCEPTION_EXECUTE_HANDLER) {}
+        __try { b3 = *(BYTE*)Exit24;    } __except(EXCEPTION_EXECUTE_HANDLER) {}
+
+        if (b1 != 0 && b2 != 0 && b3 != 0) {
+            // Decrypted! Log bytes dan keluar dari wait loop.
+            FILE* f = fopen("lslog_bypass.log", "a");
+            if (f) {
+                fprintf(f, "decrypted after %d ticks (~%dms)\n", waitTicks, waitTicks * 20);
+                __try {
+                    BYTE* p = (BYTE*)InitStart;
+                    fprintf(f, "InitStart bytes: %02X %02X %02X %02X %02X %02X %02X %02X\n",
+                        p[0],p[1],p[2],p[3],p[4],p[5],p[6],p[7]);
+                } __except(EXCEPTION_EXECUTE_HANDLER) {}
+                __try {
+                    BYTE* p = (BYTE*)Exit23;
+                    fprintf(f, "Exit23 bytes:    %02X %02X %02X %02X %02X %02X %02X %02X\n",
+                        p[0],p[1],p[2],p[3],p[4],p[5],p[6],p[7]);
+                } __except(EXCEPTION_EXECUTE_HANDLER) {}
+                __try {
+                    BYTE* p = (BYTE*)Exit24;
+                    fprintf(f, "Exit24 bytes:    %02X %02X %02X %02X %02X %02X %02X %02X\n",
+                        p[0],p[1],p[2],p[3],p[4],p[5],p[6],p[7]);
+                } __except(EXCEPTION_EXECUTE_HANDLER) {}
+                fprintf(f, "(starting patch loop now)\n");
+                fclose(f);
             }
-            __try {
-                BYTE* p2 = (BYTE*)Exit23;
-                fprintf(f, "Exit23 bytes:    %02X %02X %02X %02X %02X %02X %02X %02X\n",
-                    p2[0],p2[1],p2[2],p2[3],p2[4],p2[5],p2[6],p2[7]);
-            } __except(EXCEPTION_EXECUTE_HANDLER) {
-                fprintf(f, "Exit23 bytes:    <UNREADABLE>\n");
-            }
-            __try {
-                BYTE* p3 = (BYTE*)Exit24;
-                fprintf(f, "Exit24 bytes:    %02X %02X %02X %02X %02X %02X %02X %02X\n",
-                    p3[0],p3[1],p3[2],p3[3],p3[4],p3[5],p3[6],p3[7]);
-            } __except(EXCEPTION_EXECUTE_HANDLER) {
-                fprintf(f, "Exit24 bytes:    <UNREADABLE>\n");
-            }
-            fprintf(f, "(starting bypass loop now)\n");
+            break;
+        }
+        Sleep(20);
+        waitTicks++;
+    }
+
+    if (waitTicks >= 60 * 50) {
+        FILE* f = fopen("lslog_bypass.log", "a");
+        if (f) {
+            fprintf(f, "TIMEOUT: target bytes still zero after 60s. Build mismatch?\n");
             fclose(f);
         }
     }

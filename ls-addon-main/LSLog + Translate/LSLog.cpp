@@ -170,6 +170,50 @@ DWORD Exit24JMP = Exit24 + 0x225;
 //DWORD Exit24JMP = Exit24 + 0x225;
 
 void NProtectBypass() {
+    // Diagnostic: tulis status awal ke `lslog_bypass.log` di folder game.
+    // Hanya 1x di awal thread, supaya bisa verify bahwa thread benar-benar
+    // jalan dan offset target ada di alamat yang readable.
+    {
+        FILE* f = fopen("lslog_bypass.log", "w");
+        if (f) {
+            DWORD base = (DWORD)GetGameStart;
+            fprintf(f, "=== lslog_bypass.log ===\n");
+            fprintf(f, "lostsaga.exe base = %08X\n", base);
+            fprintf(f, "InitStart    = %08X\n", InitStart);
+            fprintf(f, "InitComplete = %08X\n", InitComplete);
+            fprintf(f, "Exit23       = %08X\n", Exit23);
+            fprintf(f, "Exit23JMP    = %08X\n", Exit23JMP);
+            fprintf(f, "Exit24       = %08X\n", Exit24);
+            fprintf(f, "Exit24JMP    = %08X\n", Exit24JMP);
+
+            // Coba baca 8 byte di setiap target untuk verify alamat valid.
+            __try {
+                BYTE* p1 = (BYTE*)InitStart;
+                fprintf(f, "InitStart bytes: %02X %02X %02X %02X %02X %02X %02X %02X\n",
+                    p1[0],p1[1],p1[2],p1[3],p1[4],p1[5],p1[6],p1[7]);
+            } __except(EXCEPTION_EXECUTE_HANDLER) {
+                fprintf(f, "InitStart bytes: <UNREADABLE>\n");
+            }
+            __try {
+                BYTE* p2 = (BYTE*)Exit23;
+                fprintf(f, "Exit23 bytes:    %02X %02X %02X %02X %02X %02X %02X %02X\n",
+                    p2[0],p2[1],p2[2],p2[3],p2[4],p2[5],p2[6],p2[7]);
+            } __except(EXCEPTION_EXECUTE_HANDLER) {
+                fprintf(f, "Exit23 bytes:    <UNREADABLE>\n");
+            }
+            __try {
+                BYTE* p3 = (BYTE*)Exit24;
+                fprintf(f, "Exit24 bytes:    %02X %02X %02X %02X %02X %02X %02X %02X\n",
+                    p3[0],p3[1],p3[2],p3[3],p3[4],p3[5],p3[6],p3[7]);
+            } __except(EXCEPTION_EXECUTE_HANDLER) {
+                fprintf(f, "Exit24 bytes:    <UNREADABLE>\n");
+            }
+            fprintf(f, "(starting bypass loop now)\n");
+            fclose(f);
+        }
+    }
+
+    int loopCount = 0;
     while (true) {
         DetourFunction((PBYTE)InitStart, (DWORD)InitComplete, 5);
         DetourFunction((PBYTE)Exit23, (DWORD)Exit23JMP, 5);

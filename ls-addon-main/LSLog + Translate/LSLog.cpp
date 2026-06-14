@@ -241,6 +241,22 @@ void NProtectBypass() {
         DetourFunction((PBYTE)Exit23, (DWORD)Exit23JMP, 5);
         DetourFunction((PBYTE)Exit24, (DWORD)Exit24JMP, 5);
 
+        // Verify patch tetap stick. Log bila VMProtect (atau anti-cheat
+        // integrity check) melakukan revert.
+        if (loopCount == 0 || loopCount == 1 || (loopCount % 250) == 0) {
+            FILE* f = fopen("lslog_bypass.log", "a");
+            if (f) {
+                BYTE i1 = 0xFF, e23 = 0xFF, e24 = 0xFF;
+                __try { i1  = *(BYTE*)InitStart; } __except(EXCEPTION_EXECUTE_HANDLER) {}
+                __try { e23 = *(BYTE*)Exit23;    } __except(EXCEPTION_EXECUTE_HANDLER) {}
+                __try { e24 = *(BYTE*)Exit24;    } __except(EXCEPTION_EXECUTE_HANDLER) {}
+                fprintf(f, "iter #%d: byte0 InitStart=%02X (E9?), Exit23=%02X (E9?), Exit24=%02X (E9?)\n",
+                    loopCount, i1, e23, e24);
+                fclose(f);
+            }
+        }
+        loopCount++;
+
         // // Memcpy tanpa length
         memcpy((void*)(GetGameStart + 0x20EDCA0), "LostSaga in Timegate - Client", strlen("LostSaga in Timegate - Client") + 1);
         memcpy((void*)(GetGameStart + 0x205DD1C), "Quest", strlen("Quest") + 1);

@@ -170,97 +170,11 @@ DWORD Exit24JMP = Exit24 + 0x225;
 //DWORD Exit24JMP = Exit24 + 0x225;
 
 void NProtectBypass() {
-    // Diagnostic awal -- akan di-update lagi setelah memori decrypted.
-    {
-        FILE* f = fopen("lslog_bypass.log", "w");
-        if (f) {
-            DWORD base = (DWORD)GetGameStart;
-            fprintf(f, "=== lslog_bypass.log ===\n");
-            fprintf(f, "lostsaga.exe base = %08X\n", base);
-            fprintf(f, "InitStart    = %08X\n", InitStart);
-            fprintf(f, "InitComplete = %08X\n", InitComplete);
-            fprintf(f, "Exit23       = %08X\n", Exit23);
-            fprintf(f, "Exit23JMP    = %08X\n", Exit23JMP);
-            fprintf(f, "Exit24       = %08X\n", Exit24);
-            fprintf(f, "Exit24JMP    = %08X\n", Exit24JMP);
-            fprintf(f, "(waiting for VMProtect to decrypt target memory...)\n");
-            fclose(f);
-        }
-    }
-
-    // VMProtect/Themida packer: target bytes are ZERO sampai unpacker
-    // mendekripsi region. Kalau kita patch saat zeros, JMP kita akan
-    // di-OVERWRITE oleh unpacker. Jadi tunggu sampai bytes != 0.
-    int waitTicks = 0;
-    while (waitTicks < 60 * 50) { // max 60 detik (50 cek per detik)
-        BYTE b1 = 0, b2 = 0, b3 = 0;
-        __try { b1 = *(BYTE*)InitStart; } __except(EXCEPTION_EXECUTE_HANDLER) {}
-        __try { b2 = *(BYTE*)Exit23;    } __except(EXCEPTION_EXECUTE_HANDLER) {}
-        __try { b3 = *(BYTE*)Exit24;    } __except(EXCEPTION_EXECUTE_HANDLER) {}
-
-        if (b1 != 0 && b2 != 0 && b3 != 0) {
-            // Decrypted! Log bytes dan keluar dari wait loop.
-            FILE* f = fopen("lslog_bypass.log", "a");
-            if (f) {
-                fprintf(f, "decrypted after %d ticks (~%dms)\n", waitTicks, waitTicks * 20);
-                __try {
-                    BYTE* p = (BYTE*)InitStart;
-                    fprintf(f, "InitStart bytes: %02X %02X %02X %02X %02X %02X %02X %02X\n",
-                        p[0],p[1],p[2],p[3],p[4],p[5],p[6],p[7]);
-                } __except(EXCEPTION_EXECUTE_HANDLER) {}
-                __try {
-                    BYTE* p = (BYTE*)Exit23;
-                    fprintf(f, "Exit23 bytes:    %02X %02X %02X %02X %02X %02X %02X %02X\n",
-                        p[0],p[1],p[2],p[3],p[4],p[5],p[6],p[7]);
-                } __except(EXCEPTION_EXECUTE_HANDLER) {}
-                __try {
-                    BYTE* p = (BYTE*)Exit24;
-                    fprintf(f, "Exit24 bytes:    %02X %02X %02X %02X %02X %02X %02X %02X\n",
-                        p[0],p[1],p[2],p[3],p[4],p[5],p[6],p[7]);
-                } __except(EXCEPTION_EXECUTE_HANDLER) {}
-                fprintf(f, "(starting patch loop now)\n");
-                fclose(f);
-            }
-            break;
-        }
-        Sleep(20);
-        waitTicks++;
-    }
-
-    if (waitTicks >= 60 * 50) {
-        FILE* f = fopen("lslog_bypass.log", "a");
-        if (f) {
-            fprintf(f, "TIMEOUT: target bytes still zero after 60s. Build mismatch?\n");
-            fclose(f);
-        }
-    }
-
-    int loopCount = 0;
     while (true) {
         DetourFunction((PBYTE)InitStart, (DWORD)InitComplete, 5);
         DetourFunction((PBYTE)Exit23, (DWORD)Exit23JMP, 5);
         DetourFunction((PBYTE)Exit24, (DWORD)Exit24JMP, 5);
 
-        // Verify patch tetap stick. Log bila VMProtect (atau anti-cheat
-        // integrity check) melakukan revert.
-        if (loopCount == 0 || loopCount == 1 || (loopCount % 250) == 0) {
-            FILE* f = fopen("lslog_bypass.log", "a");
-            if (f) {
-                BYTE i1 = 0xFF, e23 = 0xFF, e24 = 0xFF;
-                __try { i1  = *(BYTE*)InitStart; } __except(EXCEPTION_EXECUTE_HANDLER) {}
-                __try { e23 = *(BYTE*)Exit23;    } __except(EXCEPTION_EXECUTE_HANDLER) {}
-                __try { e24 = *(BYTE*)Exit24;    } __except(EXCEPTION_EXECUTE_HANDLER) {}
-                fprintf(f, "iter #%d: byte0 InitStart=%02X (E9?), Exit23=%02X (E9?), Exit24=%02X (E9?)\n",
-                    loopCount, i1, e23, e24);
-                fclose(f);
-            }
-        }
-        loopCount++;
-
-        // SEMUA memcpy translate strings + GG kill DIMATIKAN buat reduce
-        // variable. Bypass core (3 DetourFunction di atas) tetep aktif.
-        // Cosmetic only, gak ngaruh ke bypass logic.
-#if 0
         // // Memcpy tanpa length
         memcpy((void*)(GetGameStart + 0x20EDCA0), "LostSaga in Timegate - Client", strlen("LostSaga in Timegate - Client") + 1);
         memcpy((void*)(GetGameStart + 0x205DD1C), "Quest", strlen("Quest") + 1);
@@ -361,14 +275,10 @@ void NProtectBypass() {
 
 
         if (FindProcess("GameGuard.des")) {
-            // EXPERIMENT: jangan kill GG.des. Mungkin game butuh process
-            // ini berjalan buat IPC, walau patch udah skip pengecekan-nya.
-            //
-            // TerminateProcessByName("GameGuard.des");
-            // TerminateProcessByName("GameMon.des");
-            // TerminateProcessByName("GameMon64.des");
+            TerminateProcessByName("GameGuard.des");
+            TerminateProcessByName("GameMon.des");
+            TerminateProcessByName("GameMon64.des");
         }
-#endif // disabled translate + GG kill block
 
         Sleep(20);
     }
@@ -576,20 +486,24 @@ BOOL APIENTRY DllMain(HMODULE hModule,
 
         LPSTR cmdLine = GetCommandLineA();
 
-        // Splash screen + welcome MessageBox dimatikan -- gak butuh
-        // VortexSplash.png dan gak ganggu user.
-        // ShowSplashScreen(hModule);
+        ShowSplashScreen(hModule);
 
         CreateThread(0, 0, (LPTHREAD_START_ROUTINE)&NProtectBypass, 0, 0, 0);
         //CreateThread(NULL, NULL, (LPTHREAD_START_ROUTINE)StringReplace, NULL, NULL, NULL);
 
-        // Optional: ioVortexRPC.dll (Discord RPC). Tidak fatal kalau hilang.
+        // Load ioVortexRPC.dll
         HMODULE hVortexRPCDLL = LoadLibrary(TEXT("ioVortexRPC.dll"));
-        // ignore: kalo gak ada, lewat aja, gak perlu MessageBox / return FALSE
+        if (!hVortexRPCDLL) {
+            MessageBox(NULL, TEXT("DiscordRPC.dll Not Found"), TEXT("LostSaga"), MB_OK | MB_ICONERROR);
+            return FALSE;
+        }
 
-        // Optional: ioTerminate.dll (anti-debugger). Tidak fatal kalau hilang.
+        // Load ioTerminate.dll
         HMODULE hTerminateDLL = LoadLibrary(TEXT("ioTerminate.dll"));
-        // ignore: kalo gak ada, lewat aja
+        if (!hTerminateDLL) {
+            MessageBox(NULL, TEXT("ioTerminate.dll Not Found"), TEXT("LostSaga"), MB_OK | MB_ICONERROR);
+            return FALSE;
+        }
         break;
     }
 

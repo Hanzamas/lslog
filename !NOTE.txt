@@ -1,0 +1,1 @@
+To compile, change the output folder settings to the 'lib' folder.

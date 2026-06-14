@@ -1,0 +1,108 @@
+﻿  LSLog.cpp
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(7): error C2065: 'TH32CS_SNAPALL' : undeclared identifier
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(7): error C3861: 'CreateToolhelp32Snapshot': identifier not found
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(8): error C2065: 'PROCESSENTRY32' : undeclared identifier
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(8): error C2146: syntax error : missing ';' before identifier 'pEntry'
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(8): error C2065: 'pEntry' : undeclared identifier
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(9): error C2065: 'pEntry' : undeclared identifier
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(9): error C2228: left of '.dwSize' must have class/struct/union
+          type is ''unknown-type''
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(9): error C2065: 'pEntry' : undeclared identifier
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(9): error C2070: ''unknown-type'': illegal sizeof operand
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(10): error C2065: 'pEntry' : undeclared identifier
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(10): error C3861: 'Process32First': identifier not found
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(13): error C2065: 'pEntry' : undeclared identifier
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(13): error C2228: left of '.szExeFile' must have class/struct/union
+          type is ''unknown-type''
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(14): error C2065: 'pEntry' : undeclared identifier
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(14): error C2228: left of '.th32ProcessID' must have class/struct/union
+          type is ''unknown-type''
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(19): error C2065: 'pEntry' : undeclared identifier
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(19): error C3861: 'Process32Next': identifier not found
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(27): error C2065: 'TH32CS_SNAPALL' : undeclared identifier
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(27): error C3861: 'CreateToolhelp32Snapshot': identifier not found
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(28): error C2065: 'PROCESSENTRY32' : undeclared identifier
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(28): error C2146: syntax error : missing ';' before identifier 'pEntry'
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(28): error C2065: 'pEntry' : undeclared identifier
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(29): error C2065: 'pEntry' : undeclared identifier
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(29): error C2228: left of '.dwSize' must have class/struct/union
+          type is ''unknown-type''
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(29): error C2065: 'pEntry' : undeclared identifier
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(29): error C2070: ''unknown-type'': illegal sizeof operand
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(30): error C2065: 'pEntry' : undeclared identifier
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(30): error C3861: 'Process32First': identifier not found
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(33): error C2065: 'pEntry' : undeclared identifier
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(33): error C2228: left of '.szExeFile' must have class/struct/union
+          type is ''unknown-type''
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(34): error C2065: 'pEntry' : undeclared identifier
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(34): error C2228: left of '.th32ProcessID' must have class/struct/union
+          type is ''unknown-type''
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(36): error C2065: 'pEntry' : undeclared identifier
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(36): error C3861: 'Process32Next': identifier not found
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(47): error C2065: 'PROCESSENTRY32' : undeclared identifier
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(47): error C2146: syntax error : missing ';' before identifier 'pe'
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(47): error C2065: 'pe' : undeclared identifier
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(49): error C2065: 'pe' : undeclared identifier
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(49): error C2065: 'PROCESSENTRY32' : undeclared identifier
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(49): error C2070: ''unknown-type'': illegal sizeof operand
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(50): error C2065: 'pe' : undeclared identifier
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(50): error C2228: left of '.dwSize' must have class/struct/union
+          type is ''unknown-type''
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(50): error C2065: 'PROCESSENTRY32' : undeclared identifier
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(50): error C2070: ''unknown-type'': illegal sizeof operand
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(52): error C2039: 'CreateToolhelp32Snapshot' : is not a member of '`global namespace''
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(52): error C2065: 'TH32CS_SNAPPROCESS' : undeclared identifier
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(52): error C3861: 'CreateToolhelp32Snapshot': identifier not found
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(54): error C2039: 'Process32First' : is not a member of '`global namespace''
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(54): error C2065: 'pe' : undeclared identifier
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(54): error C3861: 'Process32First': identifier not found
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(62): error C2065: 'pe' : undeclared identifier
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(62): error C2228: left of '.th32ParentProcessID' must have class/struct/union
+          type is ''unknown-type''
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(64): error C2065: 'pe' : undeclared identifier
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(64): error C2228: left of '.th32ProcessID' must have class/struct/union
+          type is ''unknown-type''
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(73): error C2039: 'Process32Next' : is not a member of '`global namespace''
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(73): error C2065: 'pe' : undeclared identifier
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\noirapi.h(73): error C3861: 'Process32Next': identifier not found
+  CLog.cpp
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\src\clog.cpp(21): warning C4996: 'vsprintf': This function or variable may be unsafe. Consider using vsprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : see declaration of 'vsprintf'
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\src\clog.cpp(42): warning C4996: 'vsprintf': This function or variable may be unsafe. Consider using vsprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : see declaration of 'vsprintf'
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\src\clog.cpp(52): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : see declaration of 'sprintf'
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\src\clog.cpp(84): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(234) : see declaration of 'fopen'
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\src\clog.cpp(93): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(234) : see declaration of 'fopen'
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\src\clog.cpp(104): warning C4996: 'freopen': This function or variable may be unsafe. Consider using freopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(249) : see declaration of 'freopen'
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\src\clog.cpp(119): warning C4996: 'freopen': This function or variable may be unsafe. Consider using freopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(249) : see declaration of 'freopen'
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\src\clog.cpp(128): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : see declaration of 'sprintf'
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\src\clog.cpp(131): warning C4996: '_splitpath': This function or variable may be unsafe. Consider using _splitpath_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdlib.h(791) : see declaration of '_splitpath'
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\src\clog.cpp(134): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : see declaration of 'sprintf'
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\src\clog.cpp(162): warning C4996: 'vsprintf': This function or variable may be unsafe. Consider using vsprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : see declaration of 'vsprintf'
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\src\clog.cpp(182): warning C4996: 'vsprintf': This function or variable may be unsafe. Consider using vsprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : see declaration of 'vsprintf'
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\src\clog.cpp(203): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : see declaration of 'sprintf'
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\src\clog.cpp(209): warning C4996: 'vsprintf': This function or variable may be unsafe. Consider using vsprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : see declaration of 'vsprintf'
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\src\clog.cpp(230): warning C4996: 'vsprintf': This function or variable may be unsafe. Consider using vsprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : see declaration of 'vsprintf'
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\src\clog.cpp(244): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : see declaration of 'sprintf'
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\src\clog.cpp(248): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : see declaration of 'sprintf'
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\src\clog.cpp(254): warning C4996: 'vsprintf': This function or variable may be unsafe. Consider using vsprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : see declaration of 'vsprintf'
+c:\users\administrator\downloads\ls-addon-main\ls-addon-main\lslog\src\clog.cpp(280): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _getch. See online help for details.
+          c:\program files (x86)\microsoft visual studio 10.0\vc\include\conio.h(128) : see declaration of 'getch'
+  StdAfx.cpp
+  Generating Code...

@@ -1,0 +1,29 @@
+﻿D:\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+  LSLog.cpp
+  CLog.cpp
+D:\LOSTSAGA PROJECT\Last Korea lslog\LSLOG\ls-addon-main\LSLog\LSLog.cpp(388,17): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\LOSTSAGA PROJECT\Last Korea lslog\LSLOG\ls-addon-main\LSLog\src\CLog.cpp(21,5): warning C4996: 'vsprintf': This function or variable may be unsafe. Consider using vsprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\LOSTSAGA PROJECT\Last Korea lslog\LSLOG\ls-addon-main\LSLog\src\CLog.cpp(42,5): warning C4996: 'vsprintf': This function or variable may be unsafe. Consider using vsprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\LOSTSAGA PROJECT\Last Korea lslog\LSLOG\ls-addon-main\LSLog\src\CLog.cpp(52,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\LOSTSAGA PROJECT\Last Korea lslog\LSLOG\ls-addon-main\LSLog\src\CLog.cpp(84,13): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\LOSTSAGA PROJECT\Last Korea lslog\LSLOG\ls-addon-main\LSLog\src\CLog.cpp(93,13): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\LOSTSAGA PROJECT\Last Korea lslog\LSLOG\ls-addon-main\LSLog\src\CLog.cpp(104,15): warning C4996: 'freopen': This function or variable may be unsafe. Consider using freopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\LOSTSAGA PROJECT\Last Korea lslog\LSLOG\ls-addon-main\LSLog\src\CLog.cpp(120,15): warning C4996: 'freopen': This function or variable may be unsafe. Consider using freopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\LOSTSAGA PROJECT\Last Korea lslog\LSLOG\ls-addon-main\LSLog\src\CLog.cpp(129,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\LOSTSAGA PROJECT\Last Korea lslog\LSLOG\ls-addon-main\LSLog\src\CLog.cpp(132,2): warning C4996: '_splitpath': This function or variable may be unsafe. Consider using _splitpath_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\LOSTSAGA PROJECT\Last Korea lslog\LSLOG\ls-addon-main\LSLog\src\CLog.cpp(135,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\LOSTSAGA PROJECT\Last Korea lslog\LSLOG\ls-addon-main\LSLog\src\CLog.cpp(163,2): warning C4996: 'vsprintf': This function or variable may be unsafe. Consider using vsprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\LOSTSAGA PROJECT\Last Korea lslog\LSLOG\ls-addon-main\LSLog\src\CLog.cpp(183,2): warning C4996: 'vsprintf': This function or variable may be unsafe. Consider using vsprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\LOSTSAGA PROJECT\Last Korea lslog\LSLOG\ls-addon-main\LSLog\src\CLog.cpp(204,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\LOSTSAGA PROJECT\Last Korea lslog\LSLOG\ls-addon-main\LSLog\src\CLog.cpp(233,2): warning C4996: 'vsprintf': This function or variable may be unsafe. Consider using vsprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\LOSTSAGA PROJECT\Last Korea lslog\LSLOG\ls-addon-main\LSLog\src\CLog.cpp(247,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\LOSTSAGA PROJECT\Last Korea lslog\LSLOG\ls-addon-main\LSLog\src\CLog.cpp(251,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\LOSTSAGA PROJECT\Last Korea lslog\LSLOG\ls-addon-main\LSLog\src\CLog.cpp(257,2): warning C4996: 'vsprintf': This function or variable may be unsafe. Consider using vsprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\LOSTSAGA PROJECT\Last Korea lslog\LSLOG\ls-addon-main\LSLog\src\CLog.cpp(284,3): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _getch. See online help for details.
+  StdAfx.cpp
+  TimeClient.cpp
+D:\LOSTSAGA PROJECT\Last Korea lslog\LSLOG\ls-addon-main\LSLog\TimeClient.cpp(38,28): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  Generating Code...
+TimeClient.obj : error LNK2005: _main already defined in LSLog.obj
+     Creating library .\bin\LSLog.lib and object .\bin\LSLog.exp
+..\..\lib\LSLog.dll : fatal error LNK1169: one or more multiply defined symbols found

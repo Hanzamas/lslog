@@ -1,0 +1,50 @@
+name: Build LSLog
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-2022
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      # Restore NuGet (CppWinRT package referenced via .vcxproj)
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v2
+
+      - name: Restore NuGet packages
+        shell: cmd
+        working-directory: "ls-addon-main/LSLog + Translate"
+        run: |
+          if exist packages.config (nuget restore packages.config -PackagesDirectory packages -SolutionDirectory .) else (echo "no packages.config")
+
+      # Build 32-bit DLL (Lost Saga client adalah x86, jadi DLL juga harus 32-bit).
+      - name: Build LSLog.dll (Win32 / Release)
+        shell: cmd
+        working-directory: "ls-addon-main/LSLog + Translate"
+        run: >
+          msbuild LSLog.vcxproj
+          /p:Configuration=Release
+          /p:Platform=Win32
+          /p:PlatformToolset=v143
+          /p:WindowsTargetPlatformVersion=10.0
+          /p:VcpkgEnabled=false
+          /m
+
+      - name: Upload LSLog.dll
+        uses: actions/upload-artifact@v4
+        with:
+          name: LSLog
+          path: |
+            **/lib/LSLog.dll
+            **/lib/LSLog.pdb
+            **/Release/LSLog.dll
+            **/Release/LSLog.pdb
+          if-no-files-found: error
